@@ -79,7 +79,7 @@ A succesful output will compute for the combinations outcome_A-exposure_A and ou
 
 ```
 
-Scenario: Consider raw values for 'outcome A' and 'exposure A' in 5,000 individuals.
+Scenario: Consider unadjusted values for 'outcome A' and 'exposure A' in 5,000 individuals.
 
 Expected adjusted R^2 for Heritability: 0.2.
 Expected adjusted R^2 for GxE: 0.05.
@@ -94,7 +94,7 @@ Run MonsterLM to perform the 3 steps outlined in the method overview to get esti
     G | 0.2 GxE | 0.05     E | 0.0     LCI_G     UCI_G    LCI_GxE    UCI_GxE
 1 0.2025808 0.05126036 0.001621415 0.1711931 0.2339685 0.02586605 0.07665466
 
-Scenario: Consider raw values for 'outcome B' and 'exposure B' in 5,000 individuals.
+Scenario: Consider unadjusted values for 'outcome B' and 'exposure B' in 5,000 individuals.
 
 Expected adjusted R^2 for Heritability: 0.0.
 Expected adjusted R^2 for GxE: 0.0.

@@ -91,8 +91,8 @@ Run MonsterLM to perform the 3 steps outlined in the method overview to get esti
 [1] "Step 2: Run MonsterLM for an outcome-exposure combinations"
 [1] "Step 3: Sum, Adjust, and Confidence Intervals for Final Estimates"
 [1] "Final Estimates with Confidence Intervals:"
-    G | 0.2 GxE | 0.05     E | 0.0     LCI_G     UCI_G   LCI_GxE   UCI_GxE
-1 0.2025808 0.05126036 0.001621415 0.1711931 0.2339685 0.1771865 0.2279751
+    G | 0.2 GxE | 0.05     E | 0.0     LCI_G     UCI_G    LCI_GxE    UCI_GxE
+1 0.2025808 0.05126036 0.001621415 0.1711931 0.2339685 0.02586605 0.07665466
 
 Scenario: Consider raw values for 'outcome B' and 'exposure B' in 5,000 individuals.
 
@@ -106,10 +106,11 @@ Run MonsterLM to perform the 3 steps outlined in the method overview to get esti
 [1] "Step 2: Run MonsterLM for an outcome-exposure combinations"
 [1] "Step 3: Sum, Adjust, and Confidence Intervals for Final Estimates"
 [1] "Final Estimates with Confidence Intervals:"
-      G | 0.2  GxE | 0.05       E | 0.0      LCI_G      UCI_G    LCI_GxE
-1 0.007945522 0.005875249 -0.0001499552 -0.0151448 0.03103584 -0.0150091
+      G | 0.2  GxE | 0.05       E | 0.0      LCI_G      UCI_G     LCI_GxE
+1 0.007945522 0.005875249 -0.0001499552 -0.0151448 0.03103584 -0.01707937
      UCI_GxE
-1 0.03090014
+1 0.02882987
+
 
 ```
 

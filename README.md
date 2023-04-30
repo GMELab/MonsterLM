@@ -47,7 +47,7 @@ MonsterLM can be run on all major platforms (e.g. GNU/Linux, macOS, Windows) wit
 
 ## Demo (with instructions for use)
 
-The following is a demonstration of the MosnterLM algorithim to estimate heritability (G) and gene-by-environment interactions (GxE). This analysis takes uses dummy data for 5,000 individuals and 500 SNPs. The full-scale analysis is designed to work on biobank scale data with >300,000 individuals and >1,000,000 SNPs. 
+The following is a demonstration of the MosnterLM algorithim to estimate heritability (G) and gene-by-environment interactions (GxE). This analysis takes uses dummy data for 5,000 individuals and 1,500 SNPs. The full-scale analysis is designed to work on biobank scale data with >300,000 individuals and >1,000,000 SNPs. 
 
 For this demo, all of the essential dependencies noted in the previous section are required except for GPULS, tidyverse, and data.table.
 

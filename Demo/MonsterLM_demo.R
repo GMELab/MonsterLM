@@ -159,7 +159,7 @@ n = 5000 # 5,000 individuals per block
 var_block = (1-EonP) * ( (n - 1)/(n - p - 1 ) )^2 * Variance.R2(adj_r2, n, p)
 var_tot = rbind(var_tot , var_block)
 }
-df_total[,6:7] <- cbind(LCI = (df_total[,1] - 1.96*sqrt(sum(var_tot))), UCI = (df_total[,1] + 1.96*sqrt(sum(var_tot))))
+df_total[,6:7] <- cbind(LCI = (df_total[,2] - 1.96*sqrt(sum(var_tot))), UCI = (df_total[,2] + 1.96*sqrt(sum(var_tot))))
 
 print("Final Estimates with Confidence Intervals:")
 df_total

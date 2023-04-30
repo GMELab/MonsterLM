@@ -75,7 +75,7 @@ chmod +x MosnterLM_demo.sh
 ./MosnterLM_demo.sh
 ```
 
-A succesful output will compute for the combinations outcome_A-exposure_A and outcome_B-exposure_B by running the full algorithim. The output window should say:
+A succesful output will compute for the combinations outcome_A-exposure_A and outcome_B-exposure_B by running the full algorithim. The run time for this script on a standard computer should be <10 seconds. The output window should say:
 
 ```
 

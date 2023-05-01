@@ -119,17 +119,15 @@ colnames(df_total)[1:7] <- c("G | 0.2" , "GxE | 0.05" , "E | 0.0", "LCI_G", "UCI
 
 for (o in 1:3) { #block loop for multiblock
 
-  #split 5,000 X 1,500 simulated genotype block into 3 block of dimensions 5,000 x 500
-  p = ncol(genotype)
-  ranges = c(1,500,1000,1500)
-    interaction_term = apply(genotype[,ranges[o]:ranges[o+1]] * E_final, 2, quantNorm)
+	#split 5,000 X 1,500 simulated genotype block into 3 block of dimensions 5,000 x 500
+	ranges = c(0,500,1000,1500)
+	interaction_term = apply(genotype[,(ranges[o]+1):ranges[o+1]] * E_final, 2, quantNorm)
 
-	G_r2 = get_R2(as.matrix(genotype[,ranges[o]:ranges[o+1]]), P_resid)
+	G_r2 = get_R2(as.matrix(genotype[,(ranges[o]+1):ranges[o+1]]), P_resid)
 	assign(paste0("G_r2_",o),G_r2[[1]][2])
 	
 	GxE_r2 = get_R2(interaction_term, P_resid)
-	assign(paste0("GxE_r2_",o),GxE_r2[[1]][2])
-	
+	assign(paste0("GxE_r2_",o),GxE_r2[[1]][2])	
 }
    
 ##### Step 3: Sum, Adjust, and Confidence Intervals for Final Estimates  #####

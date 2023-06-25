@@ -25,7 +25,7 @@ MonsterLM can be run on all major platforms (e.g. GNU/Linux, macOS, Windows) wit
 
 ### Hardware Requirements (Full-scale version)
 
-- Requires a virtual environment supporting a minimum of 200GB RAM space for in-memory operations.
+- Requires a unix-like virtual environment supporting a minimum of 250GB RAM space for in-memory operations.
 - (Optional) GPUs to run GPULS program for Step 2 Matrix inversion.
 
 ### Software Requirements
@@ -33,7 +33,7 @@ MonsterLM can be run on all major platforms (e.g. GNU/Linux, macOS, Windows) wit
 #### Essential Dependencies: programs
 | Program | Description | Download |
 | --- | --- | --- |
-| Unix-based server | Unix command line interface for shell scripting | https://ubuntu.com/download/desktop |
+| BASH (≥ 5.0) | a unix shell and command language | [https://ubuntu.com/download/desktop](https://www.gnu.org/software/bash/) |
 | R (≥ 4.0.0) or newer | R programming language | https://cran.r-project.org/ |
 | GPULS (Optional) | Fast Ordinary Least Squares Computations using GPUs | https://gist.github.com/wjn0/fd1ded8a6e5033e5ca0d00ac131469ee |
 

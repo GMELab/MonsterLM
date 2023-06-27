@@ -5,13 +5,13 @@ A method to estimate the proportion of variance explained by heritability and ge
 
 # Table of Contents
 - [Method Overview](#1)
-- [Documentation](#paragraph1)
-- [System Requirements and Installation Guide](#paragraph2)
-- [Demo Requirements](#paragraph1)
-- [Hardware Requirements](#paragraph2)
-- [Software Requirements](#paragraph1)
-- [Demo (with instructions for use)](#paragraph2)
-- [License](#paragraph2)
+- [Documentation](#2)
+- [System Requirements and Installation Guide](#3)
+- [Demo (with instructions for use)](#4)
+- [MonsterLM on biobank-scale data](#5)
+- [License](#6)
+- [Contact Information](#7)
+- [Citation](#8)
   
 ## Method Overview <a name="1"></a>
 
@@ -21,11 +21,11 @@ See the figure below for an overview to apply MonsterLM:
 
 ![image](https://user-images.githubusercontent.com/80165657/235231670-a1e08a3b-7c2e-4da5-9459-6da963abdbd5.png)
 
-## Documentation
+## Documentation <a name="2"></a>
 
 MonsterLM is currently under peer review and official documentation will be posted upon acceptance.
 
-## System Requirements and Installation Guide
+## System Requirements and Installation Guide <a name="3"></a>
 
 MonsterLM can be run on all major platforms (e.g. GNU/Linux, macOS, Windows) with the R programming langage (R version 3.6.3 or newer).
 
@@ -55,7 +55,7 @@ MonsterLM can be run on all major platforms (e.g. GNU/Linux, macOS, Windows) wit
 | MBESS | install.packages("MBESS") | https://cran.r-project.org/web/packages/MBESS/index.html |
 | gsl | install.packages("gsl") | https://cran.r-project.org/web/packages/gsl/index.html |
 
-## Demo (with instructions for use)
+## Demo (with instructions for use) <a name="4"></a>
 
 The following is a demonstration of the MosnterLM algorithim to estimate heritability (G) and gene-by-environment interactions (GxE). This analysis takes uses dummy data for 5,000 individuals and 1,500 SNPs. The full-scale analysis is designed to work on biobank scale data with >300,000 individuals and >1,000,000 SNPs. 
 
@@ -126,6 +126,24 @@ Run MonsterLM to perform the 3 steps outlined in the method overview to get esti
 
 Specific coding techniques used for each step can be viewed for Steps 1 - 3 in `MonsterLM_demo.R`.
 
-## License
+## MonsterLM on biobank-scale data <a name="5"></a>
+
+
+
+## License <a name="6"></a>
 
 GNU General Public License v3.0
+
+## Contact Information <a name="7"></a>
+
+Any queries pertaining to the MonsterLM scripts or methodological framework can be addressed to either: Matteo Di Scipio (lalir@mcmaster.ca) or Guillaume Paré (pareg@mcmaster.ca).
+
+## Citation <a name="8"></a>
+
+### Nature Communications
+
+Provisionally accepted.
+
+### Github repository
+
+[ZENODO LINK]

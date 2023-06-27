@@ -3,12 +3,17 @@
 
 A method to estimate the proportion of variance explained by heritability and gene-by-environment interactions, in a fast, accurate, efficient, and unbiased manner on biobank-scale datasets (N>300,000). 
 
-# Table of contents
-1. [Method Overview](#method_overview)
-2. [Some paragraph](#paragraph1)
-3. [Another paragraph](#paragraph2)
-
-## Method Overview <a name="method_overview"></a>
+# Table of Contents
+- [Method Overview](#1)
+- [Documentation](#paragraph1)
+- [System Requirements and Installation Guide](#paragraph2)
+- [Demo Requirements](#paragraph1)
+- [Hardware Requirements](#paragraph2)
+- [Software Requirements](#paragraph1)
+- [Demo (with instructions for use)](#paragraph2)
+- [License](#paragraph2)
+  
+## Method Overview <a name="1"></a>
 
 The MonsterLM algorithm is a method designed to estimate the proportion of variance explained by additive genetic variants (h<sup>2</sup>) and gene-by-environment interactions (GxE) in a fast, accurate, efficient, and unbiased manner, particularly for large datasets with many single nucleotide polymorphisms (SNPs) compared to participants. The algorithm partitions autosomes into non-overlapping regions to estimate genome-wide heritability or interactions with environmental exposures, while minimizing residual population stratification effects and LD spills. The algorithm is based on a multiple linear regression modeling framework and can use CPUs with sufficient RAM support (>200 GB) or graphics processing units (GPUs) for computational speed gains.
 

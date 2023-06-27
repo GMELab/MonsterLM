@@ -135,7 +135,7 @@ Any queries pertaining to the MonsterLM scripts or methodological framework can 
 
 ## Citation <a name="8"></a>
 
-### Nature Communications
+### *Nature Communications*
 
 Provisionally accepted.
 

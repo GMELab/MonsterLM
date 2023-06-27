@@ -5,7 +5,6 @@ A method to estimate the proportion of variance explained by heritability and ge
 
 # Table of Contents
 - [Method Overview](#1)
-- [Documentation](#2)
 - [System Requirements and Installation Guide](#3)
 - [Demo (with instructions for use)](#4)
 - [MonsterLM on biobank-scale data](#5)
@@ -20,10 +19,6 @@ The MonsterLM algorithm is a method designed to estimate the proportion of varia
 See the figure below for an overview to apply MonsterLM:
 
 ![image](https://user-images.githubusercontent.com/80165657/235231670-a1e08a3b-7c2e-4da5-9459-6da963abdbd5.png)
-
-## Documentation <a name="2"></a>
-
-MonsterLM is currently under peer review and official documentation will be posted upon acceptance.
 
 ## System Requirements and Installation Guide <a name="3"></a>
 
@@ -136,7 +131,7 @@ GNU General Public License v3.0
 
 ## Contact Information <a name="7"></a>
 
-Any queries pertaining to the MonsterLM scripts or methodological framework can be addressed to either: Matteo Di Scipio (lalir@mcmaster.ca) or Guillaume Paré (pareg@mcmaster.ca).
+Any queries pertaining to the MonsterLM scripts or methodological framework can be addressed to either: Matteo Di Scipio (discipim@mcmaster.ca) or Guillaume Paré (pareg@mcmaster.ca).
 
 ## Citation <a name="8"></a>
 

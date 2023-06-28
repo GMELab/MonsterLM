@@ -121,13 +121,13 @@ Run MonsterLM to perform the 3 steps outlined in the method overview to get esti
 
 Specific coding techniques used for each step can be viewed for Steps 1 - 3 in `MonsterLM_demo.R`.
 
-## MonsterLM on biobank-scale data <a name="5"></a>
+## Running MonsterLM on biobank-scale data <a name="5"></a>
 
-Prior to running MonsterLM on biobank-scale data, first ensure individual-level genotype and phenotype data is prepared in the .bed format to be accessed by PLINK. Individal and SNP quality control is described in 4 steps in `MonsterLM/scripts/PLINK`.
+Prior to running MonsterLM on biobank-scale data, first ensure individual-level genotype and phenotype data is prepared in the .bed format to be accessed by PLINK. Individal and SNP quality control is described in 4 steps in `MonsterLM/scripts/PLINK`:
 
-0. `**PLINK_QC.sh**`
+  0. **`PLINK_QC.sh`**
 
-Source .bed files should be pre-processed to meet the following criteria mentioned in Step 0:
+Source .bed files should be pre-processed to meet the following criteria mentioned in Step 0.
 
 ```
 #--------------------------------------------------------------------------------
@@ -146,6 +146,190 @@ Source .bed files should be pre-processed to meet the following criteria mention
 #
 ```
 
+PLINK scripts can be set up according to user preference. The following offers and example template to prepare the genotypic and phenotypic files for MonsterLM.
+
+Step 1: Define inputs and paths.
+
+```
+# Define inputs
+
+maf=$1
+
+# Define paths (dummy paths used below)
+
+outdir="/your/h2/output_directory"
+subDir="/your/reference/allele/directory" #
+UKB_genotypes="/UKBIOBANK/username/UKB_genotypes_plink" #.bed source files location
+plink19="/home/programs/plink_1.9/plink"
+chr=$(echo 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22)
+```
+
+Step 2: SNP Quality Control.
+
+```
+# Script start
+
+
+if [ $# = 1 ]; then
+
+
+  #-------------------------------------------------------------------------------
+  # Step 2: SNP quality control
+  #-------------------------------------------------------------------------------
+  # Hardy-Weingberg eqilibrium: 1e-10
+  # MAF: 0.05
+  # genotype missingness: 0.05
+  #-------------------------------------------------------------------------------
+
+
+  function hq_SNPs {
+
+    set -e
+
+    mkdir -p ${outdir}/plink19_UKB_MAF_${maf}
+
+    for i in ${chr[@]}; do
+
+      ${plink19} \
+        \
+        --noweb \
+        \
+        --bfile ${UKB_genotypes}/chr.${i}.UKB_v3_INFO_0.30.UNRELATED.BRITISH.RELATED.MAF_0.001.HWE.FINAL \
+        \
+        --maf ${maf} --geno 0.05 --hwe 1e-10 \
+        \
+        --write-snplist \
+        \
+        --out ${outdir}/plink19_UKB_MAF_${maf}/chr.${i} &
+
+    done
+    wait
+
+    for i in ${chr[@]}; do
+
+      ${plink19} \
+        \
+        --noweb \
+        \
+        --bfile ${UKB_genotypes}/chr.${i}.UKB_v3_INFO_0.30.UNRELATED.BRITISH.RELATED.MAF_0.001.HWE.FINAL \
+        \
+        --keep-allele-order \
+        \
+        --extract ${outdir}/plink19_UKB_MAF_${maf}/chr.${i}.snplist \
+        \
+        --make-bed \
+        \
+        --out ${outdir}/plink19_UKB_MAF_${maf}/chr.${i}.UKB_v3_INFO_0.30.UNRELATED.BRITISH.RELATED.MAF_${maf}.GENO_0.05.HWE.FINAL &
+
+    done
+    wait
+
+  }
+  hq_SNPs
+```
+
+Step 3: LD-prune Genotype Matrices and Recode to the Additive Model Format
+
+```
+  #-----------------------------------------------------------------------------
+  # Step 3: LD-prune Genotype Matrices and Recode to Additive Model ({0,1,2})
+  #-----------------------------------------------------------------------------
+
+
+  function LD_prune_for_MonsterLM {
+
+    set -e
+
+    for i in ${chr[@]}; do
+
+      ${plink19} \
+        \
+        --noweb \
+        \
+        --bfile ${outdir}/plink19_UKB_MAF_${maf}/chr.${i}.UKB_v3_INFO_0.30.UNRELATED.BRITISH.RELATED.MAF_${maf}.GENO_0.05.HWE.FINAL \
+        \
+        --keep-allele-order \
+        \
+        --indep-pairwise 1000 500 0.9 \
+        \
+        --out ${outdir}/plink19_UKB_MAF_${maf}/chr.${i} &
+
+    done
+    wait
+
+    for i in ${chr[@]}; do
+
+      ${plink19} \
+        \
+        --noweb \
+        \
+        --bfile ${outdir}/plink19_UKB_MAF_${maf}/chr.${i}.UKB_v3_INFO_0.30.UNRELATED.BRITISH.RELATED.MAF_${maf}.GENO_0.05.HWE.FINAL \
+        \
+        --keep-allele-order \
+        \
+        --extract ${outdir}/plink19_UKB_MAF_${maf}/chr.${i}.prune.in \
+        \
+        --make-bed \
+        \
+        --out ${outdir}/plink19_UKB_MAF_${maf}/chr.${i}.UKB_v3_INFO_0.30.UNRELATED.BRITISH.RELATED.MAF_${maf}.GENO_0.05.HWE.LD_0.9_for_MonsterLM &
+
+    done
+    wait
+
+  }
+  LD_prune_for_MonsterLM
+  
+function recode_for_MonsterLM {
+
+    set -e
+
+    for i in ${chr[@]}; do
+
+      ${plink19} \
+        \
+        --noweb \
+        \
+        --bfile ${outdir}/plink19_UKB_MAF_${maf}/chr.${i}.UKB_v3_INFO_0.30.UNRELATED.BRITISH.RELATED.MAF_${maf}.GENO_0.05.HWE.LD_0.9_for_MonsterLM \
+        \
+        --recodeA \
+        \
+        --recode-allele ${subDir}/ref_allele_09_${chr}
+        \
+        --out ${outdir}/plink19_UKB_MAF_${maf}/chr.${i}.UKB_v3_INFO_0.30.UNRELATED.BRITISH.RELATED.MAF_${maf}.GENO_0.05.HWE.LD_0.9_for_MonsterLM_ADDITIVE &
+
+    done
+    wait
+  }
+  recode_for_MonsterLM
+
+```
+
+Step 4: Clear working directories of temporary PLINK files.
+
+```
+#-------------------------------------------------------------------------------
+  # Step 4: Clear out
+  #-------------------------------------------------------------------------------
+  # Remove all temporary files
+  #-------------------------------------------------------------------------------
+
+
+  function clear_out {
+
+    rm -rf ${outdir}/plink19_UKB_MAF_${maf}/*log
+    rm -rf ${outdir}/plink19_UKB_MAF_${maf}/*frq
+    rm -rf ${outdir}/plink19_UKB_MAF_${maf}/*prune*
+    rm -rf ${outdir}/plink19_UKB_MAF_${maf}/*snplist
+
+  }
+  clear_out
+
+else
+
+  echo "ERROR: incorrect number of input arguments"
+
+fi
+```
 
 
 ## License <a name="6"></a>

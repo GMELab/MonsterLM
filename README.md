@@ -331,6 +331,17 @@ else
 fi
 ```
 
+Step 1 MonsterLM scripts are stored in `MonsterLM/scripts/MonsterLM_CPULS`. This step includes alogorithim-specific genotype and phenotype quality control detailed in the manuscript:
+
+  1. **`MonsterLM.R`**
+
+Apply transformations to the outcome:
+
+```
+
+```
+
+
 
 ## License <a name="6"></a>
 

@@ -1,13 +1,13 @@
 #!/bin/bash
 Loc="/mnt/your/phenotypes/source_variables/" #traits directory
-phen_out_dir="/mnt/your/results/Main_Analysis/step1_phenotypes_exposures/" #processed phenotype directory
+phen_out_dir="/mnt/your/results/Main_Analysis/step1_phenotypes_exposures/" #processed phenotype directory for Step1
 out_dir="/mnt/your/results/Main_Analysis/step2_results/" #results directory for Step2 block fits
 results_dir="/mnt/your/results/Main_Analysis/step3_results/" #results directory for Step3 estimate totals
 script="/mnt/your/scripts/main/" # script directory
 
 cd ${script}
 
-#Gene-Environment Analysis (4 outcomes x 4 exposures for 16 outcome-exposure combinations)
+#Gene-Environment Analysis (4 outcomes x 12 x 4 exposures for 192 outcome-exposure combinations)
 
 i=1
 for j in {1..4} # phenotype index

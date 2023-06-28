@@ -92,7 +92,6 @@ if [ $# = 1 ]; then
   hq_SNPs
 
 
-
   #-----------------------------------------------------------------------------
   # Step 3: LD-prune Genotype Matrices and Recode to Additive Model ({0,1,2})
   #-----------------------------------------------------------------------------
@@ -163,9 +162,6 @@ function recode_for_MonsterLM {
     wait
   }
   recode_for_MonsterLM
-
-  plink --bfile ${outputDir}/${header}chr${chr}_FILT_LD09_MAF05 --recodeA --recode-allele ${subDir}/ref_allele_09_${chr} --out ${outputDir}/${header}chr${chr}_QC_LD09_MAF05 #recode SNPs into numeric alleles
-  # an example of the hg19 reference allele file 
 
 
   #-------------------------------------------------------------------------------

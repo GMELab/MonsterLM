@@ -39,7 +39,7 @@ MonsterLM can be run on all major platforms (e.g. GNU/Linux, macOS, Windows) wit
 | Program | Description | Download |
 | --- | --- | --- |
 | BASH (≥ 5.0) | a unix shell and command language | [https://ubuntu.com/download/desktop](https://www.gnu.org/software/bash/) |
-| R (≥ 4.0.0) or newer | R programming language | https://cran.r-project.org/ |
+| R (≥ 3.6.3) or newer | R programming language | https://cran.r-project.org/ |
 | GPULS (Optional) | Fast Ordinary Least Squares Computations using GPUs | https://gist.github.com/wjn0/fd1ded8a6e5033e5ca0d00ac131469ee |
 
 #### Essential Dependencies: R packages
@@ -146,7 +146,7 @@ Source .bed files should be pre-processed to meet the following criteria mention
 #
 ```
 
-PLINK scripts can be set up according to user preference. The following offers and example template to prepare the genotypic and phenotypic files for MonsterLM.
+PLINK scripts can be set up according to user preference. The following offers an example template to prepare the genotypic and phenotypic files for MonsterLM.
 
 Step 1: Define inputs and paths.
 

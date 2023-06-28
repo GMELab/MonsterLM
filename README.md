@@ -7,7 +7,7 @@ A method to estimate the proportion of variance explained by heritability and ge
 - [Method Overview](#1)
 - [System Requirements and Installation Guide](#3)
 - [Demo (with instructions for use)](#4)
-- [MonsterLM on biobank-scale data](#5)
+- [Running MonsterLM scripts on biobank-scale data](#5)
 - [License](#6)
 - [Contact Information](#7)
 - [Citation](#8)
@@ -122,6 +122,29 @@ Run MonsterLM to perform the 3 steps outlined in the method overview to get esti
 Specific coding techniques used for each step can be viewed for Steps 1 - 3 in `MonsterLM_demo.R`.
 
 ## MonsterLM on biobank-scale data <a name="5"></a>
+
+Prior to running MonsterLM on biobank-scale data, first ensure individual-level genotype and phenotype data is prepared in the .bed format to be accessed by PLINK. Individal and SNP quality control is described in 4 steps in `MonsterLM/scripts/PLINK`.
+
+0. `**PLINK_QC.sh**`
+
+Source .bed files should be pre-processed to meet the following criteria mentioned in Step 0:
+
+```
+#--------------------------------------------------------------------------------
+#                Prepare genotypes for h2 and GxE testing
+#--------------------------------------------------------------------------------
+# Step 0: Preliminary QC for biobank data in .fam, .bim, and .bed including:
+#
+# Individual Exclusion criteria: (1) non-white related British ancestry, (2) high 
+# ancestry-specific heterozygosity, (3) high genotype missingness (>0.05), 
+# (3) mismatching genetic ancestry, (4) sex chromosome aneuploidy, 
+# (5) mismatching gender sex and genetic sex, and (6) consent withdrawal 
+# at the time of analysis.
+#
+# SNP exclusion criteria included: (1) SNPs with low imputation quality 
+# (INFO score < 0.30), (2) call rate < 0.95, and (3) ambiguous or duplicated SNPs.
+#
+```
 
 
 

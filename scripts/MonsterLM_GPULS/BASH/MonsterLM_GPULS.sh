@@ -4,7 +4,7 @@ tmp="/mnt/temp/data/" #temporary data directory to write to for GPULS; for treat
 Loc="/mnt/your/source_data/Traits/" #traits directory
 out_dir="/mnt/your/results_dir/" #results directory
 out_dir2="/mnt/your/total/results/"
-script="/mnt/zerotide/discipim/GxWHR_edits_R1/REAL_DATA/GxE_MonsterLM/scripts/"
+script="/mnt/your/scripts/"
 cd ${script}
 
 #PART 1#

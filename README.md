@@ -18,7 +18,7 @@ The MonsterLM algorithm is a method designed to estimate the proportion of varia
 
 See the figure below for an overview to apply MonsterLM:
 
-![image](https://user-images.githubusercontent.com/80165657/235231670-a1e08a3b-7c2e-4da5-9459-6da963abdbd5.png)
+![image](https://github.com/GMELab/MonsterLM/blob/main/Figures_Total_R2_v1.2.2_Page_02.png)
 
 ## System Requirements and Installation Guide <a name="3"></a>
 

@@ -11,6 +11,7 @@ Loc2 <- "/mnt/your/source_covariates/" # covariates directory
 phen_out_dir <- args[3]
 out_dir <- args[4] #blocks output directory; MonsterLM step 2 results
 results_dir <- args[5] #final results; MonsterLM step 3 results
+env_type <- args[6] #"continuous" or "dichotomous"
 
 # block specs
 chromosome <- seq(1:22) #eval(parse(text=args[2]))
@@ -135,13 +136,25 @@ if(length(index) > 0)
 	PCs = PCs[-index, ]
 }
 
-E_final = rm_stratificaiton(exposure[,1])
+if (env_type == "continuous") {
+E_final = rm_stratificaiton(exposure[,1]) #if E is dichotomous, skip
+} else {
+E_final = standardization(exposure[,1])
+}
+	
 P_final = rm_stratificaiton(pheno[,1])
 EonP <- summary(lm(P_final ~ E_final))[[9]]
 
 P_resid <- resid(lm(P_final~ E_final))
 P_resid <- quantNorm(P_resid)
-P_resid <- rm_Heteroscedasticity(P_resid, E_final)
+if (env_type == "continuous") {
+P_resid <- rm_Heteroscedasticity(P_resid, E_final) #if E is dichotomous, skip
+} else {
+    unique_Es = unique(E_final)
+     for (unique_E_val in unique_Es) {
+          P_resid[E_final == unique_E_val] <- quantNorm(P_resid[E_final == unique_E_val])
+        }
+}
 P_resid <- as.matrix(P_resid)
 
 save(EonP, file=paste0(phen_out_dir,"EonP_", exposure_var , "_on_", trait ,".RData"))
@@ -161,9 +174,13 @@ for (set in 1:max_sets[chr]) #set per chromosome we are on
 	{
 		geno_data = apply(geno_data[-index, ], 2, standardization)
 	}
-	
-	interaction_term = apply(geno_data*E_final, 2, quantNorm)
 
+	if (env_type == "continuous") {
+	interaction_term = apply(geno_data*E_final, 2, quantNorm) # for continuous E
+        } else {
+        interaction_term = apply(geno_data*E_final, 2, standardization) # for dichotomous E
+	}
+		
 	#GxE only
 	GxE_only_r2 = get_R2(interaction_term, P_resid)
 	item_GxE_only = c(chr, set, dim(interaction_term)[1], dim(interaction_term)[2], GxE_only_r2[[1]])			
